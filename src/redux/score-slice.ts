@@ -1,10 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+type Player = {
+  name: string,
+  score: number,
+}
+
 const initialState = {
   score: 0,
   highScores: [
-    0
-  ]
+    { name: '', score: 0},
+    { name: 'Agdf', score: 0},
+    { name: 'HTtv', score: 210},
+    { name: 'garg', score: 50},
+    { name: 'serg', score: 460},
+    { name: 'rgrgr', score: 30}
+  ].sort((a, b) => b.score - a.score) as Player[]
 }
 
 export const score = createSlice({
@@ -19,6 +29,7 @@ export const score = createSlice({
     },
     addHighScores: (state, actions) => {
       state.highScores.push(actions.payload)
+      state.highScores.sort((a, b) => b.score - a.score)
     }
   }
 })

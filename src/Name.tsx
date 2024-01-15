@@ -1,5 +1,6 @@
 import { useDrag } from 'react-dnd'
 import { ItemTypes } from './ItemTypes'
+import { Card } from 'antd';
 
 function Name({ name, isActive }: { name: string, isActive: boolean }) {
   const [{ isDragging }, drag] = useDrag(() => ({
@@ -18,9 +19,9 @@ function Name({ name, isActive }: { name: string, isActive: boolean }) {
 
   const opacity = isDragging ? 0.4 : 1
   return (
-    <div ref={drag} style={{ opacity }} data-testid={`box`} className='border-dashed border-[#767676] mr-6 mb-6 cursor-move float-left'>
+    <Card ref={drag} style={{ opacity }} data-testid={`box`} className='border-[#000000] cursor-move float-left'>
       {name}
-    </div>
+    </Card>
   )
 }
 

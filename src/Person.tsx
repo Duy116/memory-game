@@ -1,7 +1,7 @@
 import { useDrag, useDrop } from 'react-dnd';
 import { ItemTypes } from './ItemTypes';
 import { useEffect, useState } from 'react';
-import { Image, Layout, Typography } from 'antd';
+import { Card, Image, Typography } from 'antd';
 import { useAppDispatch } from './redux/hook';
 import { addScore } from './redux/score-slice';
 
@@ -49,18 +49,18 @@ function Person({img, realName, isCheck} : {img: string, realName: string, isChe
     }
   },[name, realName, isCheck, dispatch])
 
-  const color = realName === name ? "green" : "red"
+  const color = realName === name ? "#00FF00" : "#FF0000"
 
   return (
-    <Layout className='h-48 w-48 mr-6 mb-6 text-white p-4 text-center text-base float-left bg-black'>
+    <Card className='text-white p-4 text-center text-base float-left bg-[#7c7c7c]'>
       <div ref={drop}>
-        <Image preview={false} width={100} src={img} draggable={false}/>
+        <Image preview={false} width={200} src={img} draggable={false}/>
         <Typography ref={drag} className='h-10 text-white'>
           {name}
         </Typography>
-        {isCheck ? <Typography style={{ color: color }} >{realName}</Typography> : <></>}
+        {isCheck ? <Typography style={{ color: color }} className='font-bold'>{realName}</Typography> : <></>}
       </div>
-    </Layout>
+    </Card>
   )
 }
 
