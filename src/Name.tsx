@@ -1,14 +1,20 @@
 import { useDrag } from 'react-dnd'
 import { ItemTypes } from './ItemTypes'
 
-function Name({ name }: { name: string }) {
+function Name({ name, isActive }: { name: string, isActive: boolean }) {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: ItemTypes.NAME,
     item: { name },
+    canDrag: () => {
+      if (isActive)
+        return true;
+      else 
+        return false;
+    },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
-  }))
+  }), [isActive])
 
   const opacity = isDragging ? 0.4 : 1
   return (
